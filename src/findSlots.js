@@ -4,17 +4,11 @@ export function findSlots(grid) {
   const cols = grid[0].length
 
   const slots = []
-  let startCount = 0
 
   // scans the grid for horizontal and vertical slots
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const cell = grid[r][c]
-
-      // count numbered cells (1 or 2)
-      if (cell === '1' || cell === '2') {
-        startCount += Number(cell)
-      }
 
       // ignore dots entirely
       if (cell === '.') continue
@@ -53,5 +47,5 @@ export function findSlots(grid) {
     }
   }
 
-  return { slots, startCount }
+  return { slots }
 }
