@@ -78,5 +78,18 @@ return false
 return true
 }
 export function placeWord(slot, word, grid){
-
+const changes=[]
+for (let i=0;i<slot.cells.length;i++){
+  const r=slot.cells[i].r
+  const c=slot.cells[i].c
+  if (grid[r][c]===null){
+   changes.push({
+    r:r,
+    c:c,
+    previous:grid[r][c]
+   })
+    grid[r][c]=word[i]
+  }
+}
+return changes
 }
