@@ -48,3 +48,35 @@ Quick summary of how the project works so far:
 
     (The "solution" array is what applySolution() uses to fill the grid.)
 */
+
+export function solvingGrid(grid){
+  const newGrid=[]
+for (let row=0;row<grid.length;row++){
+  const newRow=[]
+  for (let col=0;col<grid[row].length;col++){
+      if(grid[row][col]=="."){
+        newRow.push(".")
+      } else {
+        newRow.push(null)
+      }
+  }
+newGrid.push(newRow)
+}
+return newGrid
+}
+export function canPlaceWord(slot, word, grid){
+  if (slot.cells.length!==word.length){
+    return false
+  }
+for (let i=0;i<slot.cells.length;i++){
+    const r=slot.cells[i].r
+  const c=slot.cells[i].c
+if (grid[r][c]!==word[i] && grid[r][c]!=null){
+return false
+}
+}
+return true
+}
+export function placeWord(slot, word, grid){
+
+}
