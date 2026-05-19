@@ -93,3 +93,10 @@ for (let i=0;i<slot.cells.length;i++){
 }
 return changes
 }
+export function restoreWord(changes,grid){
+  for (let i=0;i<changes.length;i++){
+    const change=changes[i]
+grid[change.r][change.c]=change.previous
+  }
+  return grid
+}
