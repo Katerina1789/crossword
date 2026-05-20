@@ -2,7 +2,7 @@
 import { validateInput } from "./src/validateInput.js";
 import { parsePuzzle } from "./src/parsePuzzle.js";
 import { findSlots } from "./src/findSlots.js";
-// import { <functionname> } from './src/backtracking.js';
+import { solvingGrid, solve } from "./src/backtracking.js";
 import { applySolution } from "./src/applySolution.js";
 
 // crosswordSolver connects all parts
@@ -21,26 +21,33 @@ export function crosswordSolver(puzzle, words) {
     // find all slots in the grid
     const { slots } = findSlots(grid);
 
-    // TODO: enable this once backtracking is implemented
-    console.log("Backtracking solver not implemented yet");
-    return;
+    // prepare working grid for backtracking
+    const workGrid = solvingGrid(grid);
 
-    /*
-    Backtracking Implementation:
-     const result = <functionname>(slots, words, grid)
+    // backtracking state
+    const used = new Array(words.length).fill(false);
+    const count = { count: 0 };
+    const currentSolution = [];
+    const solution = [];
 
-     if (result.type === 'none') {
-       console.log('Error: No valid solution')
-       return
-     }
+    // run solver
+    solve(0, slots, words, workGrid, used, count, currentSolution, solution);
 
-     if (result.type === 'multiple') {
-       console.log('Error: Multiple solutions found')
-       return
-     }
+    // no solution
+    if (count.count === 0) {
+      console.log("Error: No valid solution");
+      return;
+    }
 
-     console.log(applySolution(grid, result.solution))
-    */
+    // multiple solutions
+    if (count.count > 1) {
+      console.log("Error: Multiple solutions found");
+      return;
+    }
+
+    // unique solution -> print filled puzzle
+    const output = applySolution(grid, solution[0]);
+    console.log(output);
   } catch (err) {
     console.log(`Error: ${err.message}`);
   }
