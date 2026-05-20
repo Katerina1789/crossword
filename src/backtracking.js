@@ -100,3 +100,30 @@ grid[change.r][change.c]=change.previous
   }
   return grid
 }
+export function solve(slotIndex, slots, words, grid, used, count,currentSolution, solution){ 
+ if (slotIndex===slots.length){
+  count.count++
+  solution.push([...currentSolution])
+return
+}
+  if (count.count>1){
+return
+  }
+  const slot=slots[slotIndex]
+for (let i=0;i<words.length;i++){
+  const word=words[i]
+  if (used[i]){
+continue
+  }
+if (canPlaceWord(slot, word, grid)){
+  used[i]=true
+ const changes=placeWord(slot, word, grid)
+ currentSolution.push({slot, word})
+  solve(slotIndex+1, slots, words, grid, used, count, currentSolution, solution)
+  currentSolution.pop()
+  restoreWord(changes,grid)
+  used[i]=false
+}
+
+}
+}
