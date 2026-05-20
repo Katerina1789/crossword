@@ -1,59 +1,76 @@
-// Creates a working copy of the grid: walls ('.') are kept, fillable cells become null
+// solvingGrid creates a working grid where dots stay and other cells become null
 export function solvingGrid(grid) {
   const newGrid = [];
+
+  // build new grid row by row
   for (let row = 0; row < grid.length; row++) {
     const newRow = [];
+
+    // copy dots, replace other cells with null
     for (let col = 0; col < grid[row].length; col++) {
-      if (grid[row][col] == ".") {
+      if (grid[row][col] === ".") {
         newRow.push(".");
       } else {
         newRow.push(null);
       }
     }
+
     newGrid.push(newRow);
   }
+
   return newGrid;
 }
-// Returns true if the word can be placed in the slot without conflicting with already-placed letters
+
+// canPlaceWord checks if a word fits in a slot without conflicts
 export function canPlaceWord(slot, word, grid) {
+  // length must match
   if (slot.cells.length !== word.length) {
     return false;
   }
+
+  // check each cell for conflicts
   for (let i = 0; i < slot.cells.length; i++) {
     const r = slot.cells[i].r;
     const c = slot.cells[i].c;
+
+    // conflict if grid has a different letter
     if (grid[r][c] !== word[i] && grid[r][c] != null) {
       return false;
     }
   }
+
   return true;
 }
-// Places the word into the grid and returns the list of cells that were changed (for undo)
+
+// placeWord writes a word into the grid and records changed cells
 export function placeWord(slot, word, grid) {
   const changes = [];
+
+  // fill each cell of the slot
   for (let i = 0; i < slot.cells.length; i++) {
     const r = slot.cells[i].r;
     const c = slot.cells[i].c;
+
+    // only write into empty cells
     if (grid[r][c] === null) {
-      changes.push({
-        r: r,
-        c: c,
-        previous: null,
-      });
+      changes.push({ r, c, previous: null });
       grid[r][c] = word[i];
     }
   }
+
   return changes;
 }
-// Undoes a placeWord call by restoring each changed cell to its previous value
+
+// restoreWord undoes changes made by placeWord
 export function restoreWord(changes, grid) {
+  // restore each changed cell
   for (let i = 0; i < changes.length; i++) {
     const change = changes[i];
     grid[change.r][change.c] = change.previous;
   }
 }
-// Recursive backtracking: tries every unused word for the current slot,
-// counts solutions found, and stops early once count exceeds 1
+
+// solve tries words in each slot using backtracking and tracks solutions
 export function solve(
   slotIndex,
   slots,
@@ -64,7 +81,10 @@ export function solve(
   currentSolution,
   solution,
 ) {
+  // stop early if more than one solution found
   if (count.count > 1) return;
+
+  // all slots filled -> found a solution
   if (slotIndex === slots.length) {
     count.count++;
     if (count.count === 1) {
@@ -74,14 +94,22 @@ export function solve(
   }
 
   const slot = slots[slotIndex];
+
+  // try each unused word
   for (let i = 0; i < words.length; i++) {
     if (used[i]) continue;
 
     const word = words[i];
+
+    // check if word fits
     if (canPlaceWord(slot, word, grid)) {
       used[i] = true;
+
+      // place word and record changes
       const changes = placeWord(slot, word, grid);
       currentSolution.push({ slot, word });
+
+      // recurse to next slot
       solve(
         slotIndex + 1,
         slots,
@@ -92,6 +120,8 @@ export function solve(
         currentSolution,
         solution,
       );
+
+      // undo placement
       currentSolution.pop();
       restoreWord(changes, grid);
       used[i] = false;

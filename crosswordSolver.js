@@ -28,10 +28,10 @@ export function crosswordSolver(puzzle, words) {
     const used = new Array(words.length).fill(false);
     const count = { count: 0 };
     const currentSolution = [];
-    const solution = [];
+    const solutions = [];
 
     // run solver
-    solve(0, slots, words, workGrid, used, count, currentSolution, solution);
+    solve(0, slots, words, workGrid, used, count, currentSolution, solutions);
 
     // no solution
     if (count.count === 0) {
@@ -46,10 +46,10 @@ export function crosswordSolver(puzzle, words) {
     }
 
     // unique solution -> print filled puzzle
-    const output = applySolution(grid, solution[0]);
+    const output = applySolution(grid, solutions[0]);
     console.log(output);
-  } catch (err) {
-    console.log(`Error: ${err.message}`);
+  } catch {
+    console.log("Error: Unexpected failure");
   }
 }
 

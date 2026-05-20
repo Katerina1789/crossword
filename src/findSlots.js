@@ -5,12 +5,12 @@ export function findSlots(grid) {
 
   const slots = [];
 
-  // scans the grid for horizontal and vertical slots
+  // scan grid for horizontal + vertical slots
   for (let r = 0; r < rows; r++) {
     for (let c = 0; c < cols; c++) {
       const cell = grid[r][c];
 
-      // ignore dots entirely
+      // skip blocked cells
       if (cell === ".") continue;
 
       // horizontal slot starting at (r,c)

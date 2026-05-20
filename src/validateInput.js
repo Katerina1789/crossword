@@ -1,31 +1,36 @@
+// validateInput checks puzzle format, word list, duplicates and basic rules
 export function validateInput(puzzle, words) {
-  // 1. Validate 'puzzle' type
+  // puzzle must be a string
   if (typeof puzzle !== "string") {
     return { isValid: false, msg: "Error: Puzzle must be a string" };
   }
 
-  // 2. Ensure the puzzle string is not empty or just whitespace
+  // puzzle cannot be empty
   if (puzzle.trim().length === 0) {
     return { isValid: false, msg: "Error: Puzzle string is empty" };
   }
-  // 3. Validate 'words' structure
+
+  // words must be an array
   if (!Array.isArray(words)) {
-    return { isValid: false, msg: "Error: Invalid word list format" };
+    return { isValid: false, msg: "Error: Words must be an array" };
   }
-  // 4. Ensure word list is not empty
+
+  // word list cannot be empty
   if (words.length === 0) {
     return { isValid: false, msg: "Error: Word list is empty" };
   }
-  // 5. Validate individual word integrity
+
+  // all words must be valid strings
   for (const element of words) {
-    // Check if item is a non-empty string
+    // must be a non-empty string
     if (typeof element !== "string" || element === "") {
       return {
         isValid: false,
         msg: "Error: Word list contains invalid or empty strings",
       };
     }
-    // Check for symbols/numbers in words (Regular Expression: only letters allowed)
+
+    // must contain only letters
     if (/[^a-zA-Z]/.test(element)) {
       return {
         isValid: false,
@@ -33,26 +38,30 @@ export function validateInput(puzzle, words) {
       };
     }
   }
-  // 6. Check for duplicate words
+
+  // no duplicate words allowed
   if (new Set(words).size !== words.length) {
-    return { isValid: false, msg: "Error: Duplicate words found" };
+    return { isValid: false, msg: "Error: Duplicate words were found" };
   }
 
+  // validate puzzle characters + count starting numbers
   let totalStarts = 0;
-  // 7. Validate puzzle characters and count required words
   for (const element of puzzle) {
+    // puzzle must contain only digits 0/1/2, dots, or newlines
     if (!"012.\n".includes(element)) {
       return {
         isValid: false,
-        msg: "Error: Puzzle contains unauthorized characters",
+        msg: "Error: Puzzle contains invalid characters",
       };
     }
-    // Accumulate the number of words that must start in the grid
+
+    // count required starting words
     if (element === "1" || element === "2") {
       totalStarts += Number(element);
     }
   }
-  // 8. Verify the math: Provided words must match grid requirements
+
+  // number of required words must match provided words
   if (totalStarts !== words.length) {
     return {
       isValid: false,
