@@ -12,14 +12,16 @@
 ### Test 1: Basic Puzzle (Simple Case)
 
 **Command:**
-```javascript
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2001\n0..0\n1000\n0..0";
+const words = ["casa", "alan", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 casa
 i..l
@@ -32,6 +34,7 @@ o..n
 ### Test 2: Complex Puzzle (Large Grid)
 
 **Command:**
+
 ```javascript
 const puzzle = `...1...........
 ..1000001000...
@@ -45,26 +48,27 @@ const puzzle = `...1...........
 .0.0......0....
 .0.0.....100...
 ...0......0....
-..........0....`
+..........0....`;
 const words = [
-  'sun',
-  'sunglasses',
-  'suncream',
-  'swimming',
-  'bikini',
-  'beach',
-  'icecream',
-  'tan',
-  'deckchair',
-  'sand',
-  'seaside',
-  'sandals',
-]
+  "sun",
+  "sunglasses",
+  "suncream",
+  "swimming",
+  "bikini",
+  "beach",
+  "icecream",
+  "tan",
+  "deckchair",
+  "sand",
+  "seaside",
+  "sandals",
+];
 
-crosswordSolver(puzzle, words)
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 ...s...........
 ..sunglasses...
@@ -86,6 +90,7 @@ bikini..r...n..
 ### Test 3: Different Word Order (Same Result)
 
 **Command:**
+
 ```javascript
 const puzzle = `...1...........
 ..1000001000...
@@ -99,26 +104,27 @@ const puzzle = `...1...........
 .0.0......0....
 .0.0.....100...
 ...0......0....
-..........0....`
+..........0....`;
 const words = [
-  'sun',
-  'sunglasses',
-  'suncream',
-  'swimming',
-  'bikini',
-  'beach',
-  'icecream',
-  'tan',
-  'deckchair',
-  'sand',
-  'seaside',
-  'sandals',
-].reverse()
+  "sun",
+  "sunglasses",
+  "suncream",
+  "swimming",
+  "bikini",
+  "beach",
+  "icecream",
+  "tan",
+  "deckchair",
+  "sand",
+  "seaside",
+  "sandals",
+].reverse();
 
-crosswordSolver(puzzle, words)
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 ...s...........
 ..sunglasses...
@@ -140,6 +146,7 @@ bikini..r...n..
 ### Test 4: Food Puzzle
 
 **Command:**
+
 ```javascript
 const puzzle = `..1.1..1...
 10000..1000
@@ -151,24 +158,25 @@ const puzzle = `..1.1..1...
 ....0..0...
 ..100000...
 ....0..0...
-....0......`
+....0......`;
 const words = [
-  'popcorn',
-  'fruit',
-  'flour',
-  'chicken',
-  'eggs',
-  'vegetables',
-  'pasta',
-  'pork',
-  'steak',
-  'cheese',
-]
+  "popcorn",
+  "fruit",
+  "flour",
+  "chicken",
+  "eggs",
+  "vegetables",
+  "pasta",
+  "pork",
+  "steak",
+  "cheese",
+];
 
-crosswordSolver(puzzle, words)
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 ..p.f..v...
 flour..eggs
@@ -190,14 +198,16 @@ pork..pasta
 ### Test 5: Mismatch Between Words and Puzzle Starting Positions
 
 **Command:**
-```javascript
-const puzzle = '2001\n0..0\n2000\n0..0'
-const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2001\n0..0\n2000\n0..0";
+const words = ["casa", "alan", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -209,14 +219,16 @@ Error
 ### Test 6: Invalid Starting Number (Higher than 2)
 
 **Command:**
-```javascript
-const puzzle = '0001\n0..0\n3000\n0..0'
-const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "0001\n0..0\n3000\n0..0";
+const words = ["casa", "alan", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -228,14 +240,16 @@ Error
 ### Test 7: Duplicate Words in List
 
 **Command:**
-```javascript
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['casa', 'casa', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2001\n0..0\n1000\n0..0";
+const words = ["casa", "casa", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -247,14 +261,16 @@ Error
 ### Test 8: Empty Puzzle
 
 **Command:**
-```javascript
-const puzzle = ''
-const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "";
+const words = ["casa", "alan", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -266,14 +282,16 @@ Error
 ### Test 9: Invalid Puzzle Format (Not a String)
 
 **Command:**
-```javascript
-const puzzle = 123
-const words = ['casa', 'alan', 'ciao', 'anta']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = 123;
+const words = ["casa", "alan", "ciao", "anta"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -285,14 +303,16 @@ Error
 ### Test 10: Invalid Words Format (Not an Array)
 
 **Command:**
-```javascript
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = 123
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2001\n0..0\n1000\n0..0";
+const words = 123;
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -304,14 +324,16 @@ Error
 ### Test 11: Multiple Solutions (Ambiguous Puzzle)
 
 **Command:**
-```javascript
-const puzzle = '2000\n0...\n0...\n0...'
-const words = ['abba', 'assa']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2000\n0...\n0...\n0...";
+const words = ["abba", "assa"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```
@@ -323,14 +345,16 @@ Error
 ### Test 12: No Valid Solution (Incompatible Words)
 
 **Command:**
-```javascript
-const puzzle = '2001\n0..0\n1000\n0..0'
-const words = ['aaab', 'aaac', 'aaad', 'aaae']
 
-crosswordSolver(puzzle, words)
+```javascript
+const puzzle = "2001\n0..0\n1000\n0..0";
+const words = ["aaab", "aaac", "aaad", "aaae"];
+
+crosswordSolver(puzzle, words);
 ```
 
 **Expected Output:**
+
 ```
 Error
 ```

@@ -65,13 +65,13 @@ These are the technical constraints required by the exercise:
 **Tasks**:
 
 - Validate input type:
-    - words must be an array
-    - puzzle must be a string
+  - words must be an array
+  - puzzle must be a string
 - Validate characters (digits, dots, newlines)
 - Validate all words are:
-    - strings
-    - not empty
-    - unique
+  - strings
+  - not empty
+  - unique
 - Validate puzzle and words count match
 - Return clear error messages for invalid cases
 
@@ -107,6 +107,6 @@ These are the technical constraints required by the exercise:
 - Restore previous cell values when backtracking
 - Try all words for each slot recursively
 - Detect:
-    - 0 solutions -> Error
-    - 1 solution -> OK
-    - more than 1 solution -> Error
+  - 0 solutions -> Error
+  - 1 solution -> OK
+  - more than 1 solution -> Error
