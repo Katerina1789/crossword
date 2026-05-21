@@ -13,6 +13,8 @@ export function findSlots(grid) {
       // skip blocked cells
       if (cell === ".") continue;
 
+      let foundStarts = 0;
+
       // horizontal slot starting at (r,c)
       if (
         (c === 0 || grid[r][c - 1] === ".") && // left blocked
@@ -26,6 +28,10 @@ export function findSlots(grid) {
           cc++;
         }
         if (cells.length >= 2) {
+          foundStarts++;
+          if (cell !== "1" && cell !== "2") {
+            return { isValid: false, msg: "Error: Invalid starting positions" };
+          }
           slots.push({ cells, length: cells.length });
         }
       }
@@ -43,11 +49,19 @@ export function findSlots(grid) {
           rr++;
         }
         if (cells.length >= 2) {
+          foundStarts++;
+          if (cell !== "1" && cell !== "2") {
+            return { isValid: false, msg: "Error: Invalid starting positions" };
+          }
           slots.push({ cells, length: cells.length });
         }
+      }
+
+      if ((cell === "1" || cell === "2") && foundStarts !== Number(cell)) {
+        return { isValid: false, msg: "Error: Invalid starting positions" };
       }
     }
   }
 
-  return { slots };
+  return { isValid: true, slots };
 }

@@ -61,6 +61,15 @@ export function validateInput(puzzle, words) {
     }
   }
 
+  // all rows must exist and have the same length
+  const rows = puzzle.split("\n");
+  const firstRowLength = rows[0].length;
+  for (const row of rows) {
+    if (row.length === 0 || row.length !== firstRowLength) {
+      return { isValid: false, msg: "Error: Puzzle rows are not rectangular" };
+    }
+  }
+
   // number of required words must match provided words
   if (totalStarts !== words.length) {
     return {

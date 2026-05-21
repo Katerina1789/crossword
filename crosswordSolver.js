@@ -19,7 +19,12 @@ export function crosswordSolver(puzzle, words) {
     const grid = parsePuzzle(puzzle);
 
     // find all slots in the grid
-    const { slots } = findSlots(grid);
+    const found = findSlots(grid);
+    if (!found.isValid) {
+      console.log(found.msg);
+      return;
+    }
+    const { slots } = found;
 
     // prepare working grid for backtracking
     const workGrid = solvingGrid(grid);
@@ -53,8 +58,10 @@ export function crosswordSolver(puzzle, words) {
   }
 }
 
-// Testing example
+/*
+ Testing example
 const puzzle = "2001\n0..0\n2000\n0..0";
 const words = ["casa", "alan", "ciao", "anta"];
 
 crosswordSolver(puzzle, words);
+*/

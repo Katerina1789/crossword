@@ -86,6 +86,8 @@ export function solve(
 
   // all slots filled -> found a solution
   if (slotIndex === slots.length) {
+    if (used.includes(false)) return;
+
     count.count++;
     if (count.count === 1) {
       solution.push([...currentSolution]);
