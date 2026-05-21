@@ -26,3 +26,6 @@ Thumbs.db
 # Environment files (if ever used)
 .env
 .env.local
+
+# Audit results (if generated)
+audit_results.txt

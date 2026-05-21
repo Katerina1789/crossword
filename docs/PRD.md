@@ -18,7 +18,7 @@ These are the mandatory behaviors required to pass the audit:
   - Words list must be an array of non-empty strings.
   - No duplicate words allowed in the list.
   - Number of words must match the number of starting positions in the puzzle.
-  - All numbers must be `1` or `2` (representing word directions: across and down).
+  - All numbers must be `1` or `2` (representing word directions: across and down) whereas `0` represents a fillable cell.
 
 - Solve the puzzle:
   - Numbers represent starting cells of words.

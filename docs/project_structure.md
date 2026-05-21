@@ -208,13 +208,8 @@ Run it with:
 ```bash
 bash audit/audit.sh
 ```
-
-It creates:
-
-```text
-audit_results.txt
-```
-OR prints directly to the Terminal.
+- to create an `audit_results.txt`
+- OR print directly to the Terminal.
 
 ## tests Directory
 

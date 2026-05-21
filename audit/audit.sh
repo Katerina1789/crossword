@@ -2,7 +2,6 @@
 
 cd "$(dirname "$0")/.."
 
-# Run node with color detection disabled when redirected to file
 node --input-type=module <<'NODE' 
 // node --input-type=module > audit_results.txt <<'NODE'
 

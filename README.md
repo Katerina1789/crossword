@@ -148,8 +148,8 @@ bash audit/audit.sh
 ```
 
 The script runs audit tests 1-12 and:
-- Prints the rsults to the terminal
-- Saves the results in `audit_results.txt` and comment out:
+- Prints the results to the terminal
+- OR saves the results in `audit_results.txt` after you comment out:
 ```bash
 // node --input-type=module > audit_results.txt <<'NODE'
 ```
